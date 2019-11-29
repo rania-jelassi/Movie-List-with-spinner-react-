@@ -1,0 +1,17 @@
+.photo {
+  width: 250px;
+  height: 270px;
+}
+.alignement {
+  display: flex;
+  justify-content: space-between;
+}
+.score {
+  width: 50px;
+}
+.card {
+  margin: 40px;
+}
+.card-body {
+  padding: 0.25rem;
+}

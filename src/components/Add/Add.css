@@ -1,0 +1,17 @@
+.add {
+  width: 255px;
+  height: 348px;
+  color: black;
+  font-size: 3rem;
+  margin-top: 40px;
+  border: 1px solid rgb(227, 227, 227);
+}
+.Add-Movie {
+  display: flex;
+  flex-direction: column;
+}
+.btn-danger {
+  color: #fff;
+  background-color: white;
+  border-color: black;
+}
