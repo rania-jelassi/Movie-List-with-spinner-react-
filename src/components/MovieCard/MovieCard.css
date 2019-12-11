@@ -11,7 +11,13 @@
 }
 .card {
   margin: 40px;
+  width: 250px;
+  height: 450px;
 }
 .card-body {
   padding: 0.25rem;
+}
+.alignementCard {
+  display: flex;
+  flex-direction: column;
 }

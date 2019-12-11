@@ -11,3 +11,28 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.Description {
+  font-size: 1.5rem;
+  margin: 40px;
+  margin-top: 100px;
+}
+.head {
+  background-color: brown;
+  width: 100%;
+  height: 50px;
+}
+.edit {
+  background-color: burlywood;
+  margin-top: 10px;
+}
+.remove {
+  background-color: rgb(250, 237, 244);
+  margin-top: 10px;
+}
+.retour {
+  background-color: red;
+  border-radius: 20px;
+  color: beige;
+  width: 140px;
+  height: 40px;
+}

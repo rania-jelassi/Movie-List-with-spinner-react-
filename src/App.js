@@ -6,6 +6,8 @@ import Rate from "./components/Rate/Rate";
 import Movielist from "./components/MovieList /MovieList.js";
 import Add from "./components/Add/Add";
 import WithLoading from "./components/Spinner/Spinner";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import FilmDescription from "./components/Description/index";
 
 const ListWithLoading = WithLoading(Movielist);
 
@@ -13,11 +15,12 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      tab: movies,
       filtredtab: [],
       minrate: 0,
       filteredTabByRate: [],
-      loading: true
+      loading: true,
+      tab: movies,
+      name: ""
     };
   }
 
@@ -35,9 +38,10 @@ class App extends React.Component {
   };
   searchFilm = input => {
     this.setState({
-      filtredtab: this.state.tab.filter(el => el.name.includes(input))
+      name: input
     });
   };
+
   sortByRating = rating => {
     this.setState({
       filteredTabByRate: this.state.tab.filter(el => el.rating == rating)
@@ -51,23 +55,39 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <div className="head">
-          <MovieSearch searchFilm={this.searchFilm} />
-          <Rate etoile={this.state.minrate} onChange={this.onChange} />
+      <BrowserRouter>
+        <div className="App">
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <div>
+                  <div className="head">
+                    <MovieSearch searchFilm={this.searchFilm} />
+                    <Rate
+                      etoile={this.state.minrate}
+                      onChange={this.onChange}
+                    />
+                  </div>
+                  <ListWithLoading
+                    isLoading={this.state.loading}
+                    minrate={this.state.minrate}
+                    name={this.state.name}
+                    movies={
+                      this.state.filtredtab.length == 0
+                        ? this.state.tab
+                        : this.state.filtredtab
+                    }
+                  />
+                  <Add ajouterMovie={this.ajouterMovie} />
+                </div>
+              )}
+            />
+            <Route exact path="/description/:id" component={FilmDescription} />
+          </Switch>
         </div>
-
-        <ListWithLoading
-          isLoading={this.state.loading}
-          minrate={this.state.minrate}
-          movies={
-            this.state.filtredtab.length == 0
-              ? this.state.tab
-              : this.state.filtredtab
-          }
-        />
-        <Add ajouterMovie={this.ajouterMovie} />
-      </div>
+      </BrowserRouter>
     );
   }
 }

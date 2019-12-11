@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { connect } from "react-redux";
 import "./Add.css";
+
+import { addMovie } from "../../js/actions/index";
+
+const mapDispatchToProps = dispatch => ({
+  addNewMovie: newMovie => dispatch(addMovie(newMovie))
+});
 
 class ModalExample extends Component {
   state = {
@@ -25,7 +32,8 @@ class ModalExample extends Component {
     if (this.state.rate > 5) {
       alert("rate <= 5");
     } else {
-      this.props.ajouterMovie({
+      this.props.addNewMovie({
+        id: Date.now(),
         name: this.state.title,
         year: this.state.year,
         picture: this.state.srcPicture,
@@ -101,4 +109,4 @@ class ModalExample extends Component {
   }
 }
 
-export default ModalExample;
+export default connect(null, mapDispatchToProps)(ModalExample);
